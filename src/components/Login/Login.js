@@ -1,14 +1,15 @@
+import { useState } from "react";
 
 
 export function Login() {
-    // const [user, setUser] = useState(null)
+    const [user, setUser] = useState(null)
 
     const handleSubmit = ( e ) => {
         // 
         console.log('this will run when submitting the form');
         e.preventDefault();
 
-        // setUser( { firstName: 'yariv', lastName: 'katz' } )
+        setUser( { firstName: 'Yariv', lastName: 'Katz' } )
     }
 
     return (
@@ -28,7 +29,9 @@ export function Login() {
 
             {/* hello yariv you are now logged in  */}
 
-
+            {
+                user && <h1>Hello {user.firstName} you are now logged in</h1>
+            }
         </form>
     )
 }
