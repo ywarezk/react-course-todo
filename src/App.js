@@ -3,6 +3,7 @@ import './App.css';
 import { Login } from './components/Login/Login';
 import { TodoList } from './components/Todo/Todo';
 import { Header } from './components/Header/Header';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
     const user = {
@@ -16,9 +17,10 @@ function App() {
             <Header user={user} />
             <Header />
 
-            <Login />
-
-            <TodoList />
+            <Routes>
+                <Route path="/" element={ <Login /> } />
+                <Route path="/todo" element={ <TodoList /> } />
+            </Routes>
         </div>
     );
 }

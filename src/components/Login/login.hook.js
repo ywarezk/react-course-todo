@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 /**
@@ -6,6 +7,7 @@ import { useState } from "react";
  */
 export function useLogin() {
     const [user, setUser] = useState(null);
+    const navi = useNavigate();
 
     const handleSubmit = async (email, password) => {
         // call the server
@@ -21,10 +23,15 @@ export function useLogin() {
                 password
             })
         })
-        const userFromServer = await response.json();
-        console.log(userFromServer);
-        setUser(userFromServer);
-
+        if (response.status === 401) {
+            setUser(null);    
+        } else {
+            const userFromServer = await response.json();
+            console.log(userFromServer);
+            setUser(userFromServer);
+            
+            navi('/todo');
+        }
     }
 
     return [
