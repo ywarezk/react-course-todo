@@ -12,7 +12,7 @@ import { useTodo } from "./todo.hook";
  }
  */
 
-export function TodoList() {
+export default function TodoList() {
     const tasks = useTodo();
     
 
