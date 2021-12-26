@@ -1,57 +1,66 @@
 import { useState } from "react";
+import { useLogin } from "./login.hook";
 
 
 export function Login() {
-    const [user, setUser] = useState(null)
+    // const [ handleSubmit, user ] = useLogin()
+    // const [user, setUser] = useState(null)
+    // handleSubmit(email, passwrod)
+    const [handleSubmitUser, user] = useLogin()
+
+    
 
     // state var to contain form values
     const [ formValues, setFormValues ] = useState({
         email: '',
         password: ''
-    })
+    })  
 
     const handleSubmit = async ( e ) => {
         // 
         console.log('this will run when submitting the form');
         e.preventDefault();
-        const response = await fetch('https://academeez-login-ex.herokuapp.com/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: formValues.email,
-                password: formValues.password
-            })
-        })
-        const userFromServer = await response.json();
-        console.log(userFromServer);
-        setUser(userFromServer);
-        /*
-        const responsePromise = fetch('https://academeez-login-ex.herokuapp.com/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: 'yariv@nerdeez.com',
-                password: '12345678'
-            })
-        });
-        responsePromise
-            .then((response) => {
-                // const dataPromise = response.json()
-                // dataPromise.then((data) => {
-                //     console.log(data);
-                // })
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data)
-            })
 
-        setUser( { firstName: 'Yariv', lastName: 'Katz' } )
-        */
+        handleSubmitUser(formValues.email, formValues.password)
+
+        // const response = await fetch('https://academeez-login-ex.herokuapp.com/api/users/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         email: formValues.email,
+        //         password: formValues.password
+        //     })
+        // })
+        // const userFromServer = await response.json();
+        // console.log(userFromServer);
+        // setUser(userFromServer);
+        // /*
+        // const responsePromise = fetch('https://academeez-login-ex.herokuapp.com/api/users/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         email: 'yariv@nerdeez.com',
+        //         password: '12345678'
+        //     })
+        // });
+        // responsePromise
+        //     .then((response) => {
+        //         // const dataPromise = response.json()
+        //         // dataPromise.then((data) => {
+        //         //     console.log(data);
+        //         // })
+        //         return response.json();
+        //     })
+        //     .then((data) => {
+        //         console.log(data)
+        //     })
+
+        // setUser( { firstName: 'Yariv', lastName: 'Katz' } )
+        // */
     }
 
     /**
